@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/font">
+        <file>MTC-7-Segment.ttf</file>
+    </qresource>
+</RCC>
