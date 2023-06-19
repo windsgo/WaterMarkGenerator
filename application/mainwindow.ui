@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>450</height>
+    <width>700</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>600</width>
-    <height>450</height>
+    <width>700</width>
+    <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>600</width>
-    <height>450</height>
+    <width>700</width>
+    <height>500</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -74,7 +74,7 @@
        <item row="1" column="3">
         <widget class="QPushButton" name="pbSaveFile">
          <property name="text">
-          <string>保存文件</string>
+          <string>保存图片</string>
          </property>
         </widget>
        </item>
@@ -103,7 +103,7 @@ p, li { white-space: pre-wrap; }
     <item row="1" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="lbPicture">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -113,13 +113,13 @@ p, li { white-space: pre-wrap; }
         <property name="minimumSize">
          <size>
           <width>400</width>
-          <height>300</height>
+          <height>350</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>400</width>
-          <height>300</height>
+          <height>350</height>
          </size>
         </property>
         <property name="frameShape">
@@ -146,63 +146,64 @@ p, li { white-space: pre-wrap; }
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
             <widget class="QWidget" name="widgetrB" native="true">
-             <widget class="QRadioButton" name="rbModifyTime">
-              <property name="geometry">
-               <rect>
-                <x>0</x>
-                <y>50</y>
-                <width>152</width>
-                <height>18</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>修改日期</string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="rbBirthTime">
-              <property name="geometry">
-               <rect>
-                <x>0</x>
-                <y>26</y>
-                <width>152</width>
-                <height>18</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>创建日期</string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="rbShootTime">
-              <property name="geometry">
-               <rect>
-                <x>0</x>
-                <y>2</y>
-                <width>152</width>
-                <height>18</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>拍摄日期</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
+             <layout class="QGridLayout" name="gridLayout_5">
+              <item row="0" column="0">
+               <widget class="QRadioButton" name="rbShootTime">
+                <property name="text">
+                 <string>拍摄日期</string>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QRadioButton" name="rbBirthTime">
+                <property name="text">
+                 <string>创建日期</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QRadioButton" name="rbModifyTime">
+                <property name="text">
+                 <string>修改日期</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QRadioButton" name="rbManualInput">
+                <property name="text">
+                 <string>手动输入</string>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="checkBox">
-             <property name="text">
-              <string>手动输入水印字符串</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="leString">
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QLineEdit" name="leString">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pbConfirmManualString">
+               <property name="text">
+                <string>更新水印</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -216,10 +217,10 @@ p, li { white-space: pre-wrap; }
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_2">
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>FromBottom</string>
+              <string>字体大小</string>
              </property>
             </widget>
            </item>
@@ -230,10 +231,10 @@ p, li { white-space: pre-wrap; }
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_3">
-             <property name="text">
-              <string>FromRight</string>
+           <item row="2" column="1">
+            <widget class="QDoubleSpinBox" name="dsbFontPercent">
+             <property name="value">
+              <double>1.570000000000000</double>
              </property>
             </widget>
            </item>
@@ -244,24 +245,24 @@ p, li { white-space: pre-wrap; }
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_4">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>FontSize</string>
+              <string>底部间隙</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="1">
-            <widget class="QDoubleSpinBox" name="dsbFontPercent">
-             <property name="value">
-              <double>1.570000000000000</double>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>右侧间隙</string>
              </property>
             </widget>
            </item>
-           <item row="3" column="0" colspan="2">
-            <widget class="QPushButton" name="pbConfirmSetting">
+           <item row="3" column="1">
+            <widget class="QPushButton" name="pbCacheCurrentMark">
              <property name="text">
-              <string>确认设置参数</string>
+              <string>保存当前水印</string>
              </property>
             </widget>
            </item>
@@ -279,8 +280,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
-     <height>21</height>
+     <width>700</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
