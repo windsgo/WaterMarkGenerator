@@ -56,6 +56,12 @@ void MainWindow::on_pbConfirmSetting_clicked()
     }
 
     wmg_.setPosSize({ui->dsbBottomPercent->value(), ui->dsbRightPercent->value(), ui->dsbFontPercent->value()});
+    if ((ui->leString->text().isNull() || ui->leString->text().isEmpty()) && ui->rbShootTime->isChecked()) {
+        ui->rbModifyTime->setChecked(true);
+        ui->rbShootTime->setChecked(false);
+        emit ui->rbModifyTime->clicked();
+    }
+
     QImage img = wmg_.getWaterMarkedImage(ui->leString->text());
 
     QPixmap pixmap = QPixmap::fromImage(img).scaled(ui->label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
