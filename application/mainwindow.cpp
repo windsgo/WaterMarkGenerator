@@ -50,6 +50,21 @@ MainWindow::MainWindow(QWidget *parent)
         _updateWaterMarkedPicture();
     });
 
+    connect(ui->rbDigitalFont, &QRadioButton::clicked, this, [&](){
+        ui->cbDigitalFonts->setEnabled(true);
+        ui->fcbSystemFonts->setEnabled(false);
+
+        _updateWaterMarkedPicture();
+    });
+    connect(ui->rbSystemFont, &QRadioButton::clicked, this, [&](){
+        ui->cbDigitalFonts->setEnabled(false);
+        ui->fcbSystemFonts->setEnabled(true);
+
+        _updateWaterMarkedPicture();
+    });
+
+    connect(ui->cbDigitalFonts, &QComboBox::currentTextChanged, this, &MainWindow::_updateWaterMarkedPicture);
+    connect(ui->fcbSystemFonts, &QFontComboBox::currentTextChanged, this, &MainWindow::_updateWaterMarkedPicture);
 
     connect(ui->dsbFontPercent, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
             this, &MainWindow::_updateWaterMarkedPicture);
@@ -201,6 +216,19 @@ bool MainWindow::_updateWaterMarkedPicture()
     /* 更新字符串文本框 */
     _updateGenerateStringText();
 
+    /* 选择字体 */
+    if (ui->rbDigitalFont->isChecked()) {
+        if (ui->cbDigitalFonts->currentIndex() == 0) {
+            /* traditional font */
+            mark_generator_.setFontFromFile(":/font/MTC-7-Segment.ttf");
+        } else {
+            /* enhanced font */
+            mark_generator_.setFontFromFile(":/font/LCD2U-4.ttf");
+        }
+    } else { /* ui->rbSystemFont->isChecked() */
+        mark_generator_.setFont(ui->fcbSystemFonts->currentFont());
+    }
+
     mark_generator_.setPosSize({ui->dsbBottomPercent->value(),
                                ui->dsbRightPercent->value(),
                                ui->dsbFontPercent->value()});
@@ -246,4 +274,10 @@ void MainWindow::on_pbCacheCurrentMark_clicked()
 {
     current_cached_img_ = current_display_img_;
     mark_generator_.setImage(current_cached_img_);
+
+    ui->dsbBottomPercent->setValue(ui->dsbBottomPercent->value() + 5.0);
+    if (!_updateWaterMarkedPicture()) {
+        QMessageBox::warning(this, tr("错误"), error_msg_);
+        return;
+    }
 }

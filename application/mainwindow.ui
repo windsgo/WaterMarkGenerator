@@ -209,6 +209,59 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
         <item>
+         <widget class="QWidget" name="widget" native="true">
+          <property name="maximumSize">
+           <size>
+            <width>272</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="QRadioButton" name="rbDigitalFont">
+             <property name="text">
+              <string>数码字体</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="cbDigitalFonts">
+             <item>
+              <property name="text">
+               <string>复古精简数码字体</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>加强数码字体</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QRadioButton" name="rbSystemFont">
+             <property name="text">
+              <string>系统字体</string>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QFontComboBox" name="fcbSystemFonts">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
          <widget class="QFrame" name="frameParam">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -218,51 +271,52 @@ p, li { white-space: pre-wrap; }
           </property>
           <layout class="QGridLayout" name="gridLayout">
            <item row="2" column="0">
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>字体大小</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QDoubleSpinBox" name="dsbBottomPercent">
-             <property name="value">
-              <double>5.500000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QDoubleSpinBox" name="dsbFontPercent">
-             <property name="value">
-              <double>1.570000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QDoubleSpinBox" name="dsbRightPercent">
-             <property name="value">
-              <double>13.500000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>底部间隙</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
             <widget class="QLabel" name="label_3">
              <property name="text">
               <string>右侧间隙</string>
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>底部间隙</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
             <widget class="QPushButton" name="pbCacheCurrentMark">
              <property name="text">
-              <string>保存当前水印</string>
+              <string>保存当前水印
+并新建水印</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QDoubleSpinBox" name="dsbFontPercent">
+             <property name="value">
+              <double>1.570000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QDoubleSpinBox" name="dsbRightPercent">
+             <property name="value">
+              <double>13.500000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="dsbBottomPercent">
+             <property name="value">
+              <double>5.500000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>字体大小</string>
              </property>
             </widget>
            </item>
@@ -281,7 +335,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
