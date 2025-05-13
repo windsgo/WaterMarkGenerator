@@ -28,7 +28,7 @@ see Folder `WaterMarkGenerator`
 
 
 
+## Windows打包时注意
 
-
-
+`windeployqt.exe --release .\watermark_qt6.exe`
 
