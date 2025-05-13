@@ -1,0 +1,53 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classExiv2_1_1Image.html" title="Abstract base class defining the interface for an image. This is the top&#45;level interface to the Exiv2..." alt="" coords="5,537,104,564"/>
+<area shape="rect" id="Node000001" href="$classExiv2_1_1AsfVideo.html" title="Class to access ASF video files." alt="" coords="173,5,288,32"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="55,522,63,417,80,274,93,201,108,135,127,80,150,42,171,27,174,31,154,46,132,83,113,137,98,202,86,275,68,417,60,522"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1BmffImage.html" title="Class to access BMFF images." alt="" coords="168,56,294,83"/>
+<area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="55,522,65,426,84,298,96,234,111,175,129,127,150,93,166,80,169,84,154,96,134,129,116,177,101,235,89,299,71,427,61,522"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1BmpImage.html" title="Class to access Windows bitmaps. This is just a stub &#45; we only read width and height." alt="" coords="168,107,294,133"/>
+<area shape="poly" id="edge9_Node000000_Node000003" title=" " alt="" coords="56,522,68,436,87,323,114,215,131,173,150,144,166,131,169,135,154,147,136,175,119,217,92,324,73,437,62,522"/>
+<area shape="rect" id="Node000004" href="$classExiv2_1_1Cr2Image.html" title="Class to access raw Canon CR2 images. Exif metadata is supported directly, IPTC is read from the Exif..." alt="" coords="171,157,290,184"/>
+<area shape="poly" id="edge10_Node000000_Node000004" title=" " alt="" coords="52,522,55,456,67,368,80,322,97,276,120,233,150,194,169,180,172,185,154,198,124,235,102,278,85,323,73,369,60,456,58,522"/>
+<area shape="rect" id="Node000005" href="$classExiv2_1_1CrwImage.html" title="Class to access raw Canon CRW images. Only Exif metadata and a comment are supported...." alt="" coords="170,208,292,235"/>
+<area shape="poly" id="edge11_Node000000_Node000005" title=" " alt="" coords="54,521,59,464,74,390,86,351,103,313,124,277,150,245,168,232,171,237,153,249,128,280,107,315,91,353,79,391,65,465,59,522"/>
+<area shape="rect" id="Node000006" href="$classExiv2_1_1EpsImage.html" title="Class to access EPS images." alt="" coords="170,259,292,285"/>
+<area shape="poly" id="edge12_Node000000_Node000006" title=" " alt="" coords="56,521,64,473,81,412,108,350,127,321,150,295,168,283,171,287,153,299,131,324,113,352,86,414,69,474,61,522"/>
+<area shape="rect" id="Node000007" href="$classExiv2_1_1GifImage.html" title="Class to access raw GIF images. Exif/IPTC metadata are supported directly." alt="" coords="173,309,288,336"/>
+<area shape="poly" id="edge13_Node000000_Node000007" title=" " alt="" coords="59,522,70,483,88,435,114,388,150,346,171,333,174,337,153,350,119,391,93,438,75,484,64,523"/>
+<area shape="rect" id="Node000008" href="$classExiv2_1_1Jp2Image.html" title="Class to access JPEG&#45;2000 images." alt="" coords="171,360,290,387"/>
+<area shape="poly" id="edge14_Node000000_Node000008" title=" " alt="" coords="64,522,96,459,120,426,150,397,170,385,172,390,153,401,124,429,101,462,69,525"/>
+<area shape="rect" id="Node000009" href="$classExiv2_1_1JpegBase.html" title="Abstract helper base class to access JPEG images." alt="" coords="171,411,291,437"/>
+<area shape="poly" id="edge15_Node000000_Node000009" title=" " alt="" coords="72,523,106,484,150,447,174,436,176,440,153,452,110,488,76,526"/>
+<area shape="rect" id="Node000012" href="$classExiv2_1_1MatroskaVideo.html" title="Class to access Matroska video files." alt="" coords="156,461,306,488"/>
+<area shape="poly" id="edge18_Node000000_Node000012" title=" " alt="" coords="91,527,151,498,181,486,183,491,153,502,94,532"/>
+<area shape="rect" id="Node000013" href="$classExiv2_1_1MrwImage.html" title="Class to access raw Minolta MRW images. Exif metadata is supported directly, IPTC is read from the Ex..." alt="" coords="169,512,292,539"/>
+<area shape="poly" id="edge19_Node000000_Node000013" title=" " alt="" coords="119,539,169,532,169,537,120,544"/>
+<area shape="rect" id="Node000014" href="$classExiv2_1_1PgfImage.html" title="Class to access PGF images. Exif and IPTC metadata are supported directly." alt="" coords="172,563,290,589"/>
+<area shape="poly" id="edge20_Node000000_Node000014" title=" " alt="" coords="119,557,172,565,171,570,119,563"/>
+<area shape="rect" id="Node000015" href="$classExiv2_1_1PngImage.html" title="Class to access PNG images. Exif and IPTC metadata are supported directly." alt="" coords="170,613,292,640"/>
+<area shape="poly" id="edge21_Node000000_Node000015" title=" " alt="" coords="94,570,153,599,183,610,181,615,151,604,91,574"/>
+<area shape="rect" id="Node000016" href="$classExiv2_1_1PsdImage.html" title="Class to access raw Photoshop images." alt="" coords="170,664,292,691"/>
+<area shape="poly" id="edge22_Node000000_Node000016" title=" " alt="" coords="76,575,110,614,153,650,176,661,174,666,150,654,106,617,72,578"/>
+<area shape="rect" id="Node000017" href="$classExiv2_1_1QuickTimeVideo.html" title="Class to access QuickTime video files." alt="" coords="152,715,310,741"/>
+<area shape="poly" id="edge23_Node000000_Node000017" title=" " alt="" coords="69,577,101,639,124,672,153,701,172,712,170,716,150,705,120,676,96,642,64,579"/>
+<area shape="rect" id="Node000018" href="$classExiv2_1_1RafImage.html" title="Class to access raw Fujifilm RAF images. Exif metadata is supported directly, IPTC is read from the E..." alt="" coords="171,765,290,792"/>
+<area shape="poly" id="edge24_Node000000_Node000018" title=" " alt="" coords="64,578,75,617,93,664,119,711,153,751,172,763,169,768,150,755,114,714,88,666,70,619,59,580"/>
+<area shape="rect" id="Node000019" href="$classExiv2_1_1RiffVideo.html" title="Class to access RIFF video files." alt="" coords="173,816,288,843"/>
+<area shape="poly" id="edge25_Node000000_Node000019" title=" " alt="" coords="61,579,69,627,86,687,113,749,131,777,153,802,174,815,171,820,150,806,127,780,108,751,81,689,64,628,56,580"/>
+<area shape="rect" id="Node000020" href="$classExiv2_1_1Rw2Image.html" title="Class to access raw Panasonic RW2 images. Exif metadata is supported directly, IPTC and XMP are read ..." alt="" coords="168,867,294,893"/>
+<area shape="poly" id="edge26_Node000000_Node000020" title=" " alt="" coords="59,579,65,637,79,710,91,749,107,786,128,822,153,853,169,864,166,868,150,857,124,825,103,789,86,750,74,711,59,637,54,580"/>
+<area shape="rect" id="Node000021" href="$classExiv2_1_1TgaImage.html" title="Class to access raw TARGA images. This is just a stub &#45; we only read width and height." alt="" coords="171,917,291,944"/>
+<area shape="poly" id="edge27_Node000000_Node000021" title=" " alt="" coords="58,579,60,645,73,732,85,778,102,823,124,866,154,903,172,916,169,921,150,907,120,869,97,826,80,780,67,733,55,646,52,580"/>
+<area shape="rect" id="Node000022" href="$classExiv2_1_1TiffImage.html" title="Class to access TIFF images. Exif metadata is supported directly, IPTC is read from the Exif data,..." alt="" coords="173,968,289,995"/>
+<area shape="poly" id="edge28_Node000000_Node000022" title=" " alt="" coords="62,579,73,665,92,777,119,884,136,926,154,954,174,968,171,973,150,958,131,928,114,886,87,778,68,666,56,580"/>
+<area shape="rect" id="Node000024" href="$classExiv2_1_1WebPImage.html" title="Class to access WEBP video files." alt="" coords="164,1019,298,1045"/>
+<area shape="poly" id="edge30_Node000000_Node000024" title=" " alt="" coords="61,579,71,674,89,802,101,866,116,925,134,972,154,1005,168,1016,164,1020,150,1008,129,975,111,926,96,867,84,803,65,675,55,579"/>
+<area shape="rect" id="Node000025" href="$classExiv2_1_1XmpSidecar.html" title="Class to access XMP sidecar files. They contain only XMP metadata." alt="" coords="164,1069,298,1096"/>
+<area shape="poly" id="edge31_Node000000_Node000025" title=" " alt="" coords="60,579,68,684,86,827,98,899,113,965,132,1019,154,1056,168,1067,164,1071,150,1059,127,1021,108,966,93,900,80,827,63,684,55,579"/>
+<area shape="rect" id="Node000010" href="$classExiv2_1_1ExvImage.html" title="Helper class to access Exiv2 files." alt="" coords="360,385,482,412"/>
+<area shape="poly" id="edge16_Node000009_Node000010" title=" " alt="" coords="306,411,360,404,361,409,307,417"/>
+<area shape="rect" id="Node000011" href="$classExiv2_1_1JpegImage.html" title="Class to access JPEG images." alt="" coords="358,436,484,463"/>
+<area shape="poly" id="edge17_Node000009_Node000011" title=" " alt="" coords="307,431,358,438,357,444,306,437"/>
+<area shape="rect" id="Node000023" href="$classExiv2_1_1OrfImage.html" title="Class to access raw Olympus ORF images. Exif metadata is supported directly, IPTC is read from the Ex..." alt="" coords="363,968,479,995"/>
+<area shape="poly" id="edge29_Node000022_Node000023" title=" " alt="" coords="305,979,363,979,363,984,305,984"/>
+</map>

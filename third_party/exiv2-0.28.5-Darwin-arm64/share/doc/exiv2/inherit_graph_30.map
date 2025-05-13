@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classExiv2_1_1Internal_1_1CiffComponent.html" title="Interface class for components of the CIFF directory hierarchy of a CRW (Canon Raw data) image...." alt="" coords="5,31,207,56"/>
+<area shape="rect" id="Node000001" href="$classExiv2_1_1Internal_1_1CiffDirectory.html" title="This class models a CIFF directory of a CRW (Canon Raw data) image." alt="" coords="255,5,442,31"/>
+<area shape="poly" id="edge32_Node000000_Node000001" title=" " alt="" coords="222,29,254,25,254,31,223,34"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1CiffEntry.html" title="This class models one directory entry of a CIFF directory of a CRW (Canon Raw data) image." alt="" coords="266,55,431,80"/>
+<area shape="poly" id="edge33_Node000000_Node000002" title=" " alt="" coords="223,52,265,57,265,62,222,58"/>
+</map>

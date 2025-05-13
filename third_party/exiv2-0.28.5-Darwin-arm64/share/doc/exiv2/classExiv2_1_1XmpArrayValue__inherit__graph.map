@@ -1,0 +1,7 @@
+<map id="Exiv2::XmpArrayValue" name="Exiv2::XmpArrayValue">
+<area shape="rect" id="Node000001" title="Value type for simple arrays. Each item in the array is a simple value, without qualifiers...." alt="" coords="5,153,158,178"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1XmpValue.html" title="Base class for all Exiv2 values used to store XMP property values." alt="" coords="21,79,142,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,120,84,152,79,152,79,120"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1Value.html" title="Common interface for all types of values used with metadata." alt="" coords="34,5,129,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,46,84,79,79,79,79,46"/>
+</map>

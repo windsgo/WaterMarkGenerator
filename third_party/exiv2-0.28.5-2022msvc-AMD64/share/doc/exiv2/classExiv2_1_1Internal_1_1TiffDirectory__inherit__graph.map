@@ -1,0 +1,5 @@
+<map id="Exiv2::Internal::TiffDirectory" name="Exiv2::Internal::TiffDirectory">
+<area shape="rect" id="Node000001" title="This class models a TIFF directory (Ifd). It is a composite component of the TIFF tree." alt="" coords="12,80,197,107"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1TiffComponent.html" title="Interface class for components of a TIFF directory hierarchy (Composite pattern). Both TIFF directori..." alt="" coords="5,5,204,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,48,107,80,102,80,102,48"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Exiv2::Internal::TiffDecoder" name="Exiv2::Internal::TiffDecoder">
+<area shape="rect" id="Node000001" title="TIFF composite visitor to decode metadata from the TIFF tree and add it to an Image,..." alt="" coords="5,80,186,107"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1TiffVisitor.html" title="Abstract base class defining the interface for TIFF composite visitors (Visitor pattern)" alt="" coords="11,5,180,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,48,98,80,93,80,93,48"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classExiv2_1_1ExifThumbC.html" title="Access to a Exif thumbnail image. This class provides higher level accessors to the thumbnail image t..." alt="" coords="5,5,141,31"/>
+<area shape="rect" id="Node000001" href="$classExiv2_1_1ExifThumb.html" title="Access and modify an Exif thumbnail image. This class implements manipulators to set and erase the th..." alt="" coords="189,5,314,31"/>
+<area shape="poly" id="edge6_Node000000_Node000001" title=" " alt="" coords="156,16,188,16,188,21,156,21"/>
+</map>

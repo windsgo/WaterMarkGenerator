@@ -1,0 +1,5 @@
+<map id="Exiv2::Error" name="Exiv2::Error">
+<area shape="rect" id="Node000001" title="Simple error class used for exceptions. An output operator is provided to print errors to a stream." alt="" coords="12,79,102,105"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,109,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,46,60,79,54,79,54,46"/>
+</map>

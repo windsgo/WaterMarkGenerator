@@ -1,0 +1,5 @@
+<map id="Exiv2::Internal::TiffCopier" name="Exiv2::Internal::TiffCopier">
+<area shape="rect" id="Node000001" title="Copy all image tags from the source tree (the tree that is traversed) to a target tree,..." alt="" coords="5,79,176,105"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1TiffVisitor.html" title="Abstract base class defining the interface for TIFF composite visitors (Visitor pattern)" alt="" coords="6,5,175,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,46,93,79,88,79,88,46"/>
+</map>

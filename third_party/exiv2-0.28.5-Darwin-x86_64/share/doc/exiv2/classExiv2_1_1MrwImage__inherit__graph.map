@@ -1,0 +1,5 @@
+<map id="Exiv2::MrwImage" name="Exiv2::MrwImage">
+<area shape="rect" id="Node000001" title="Class to access raw Minolta MRW images. Exif metadata is supported directly, IPTC is read from the Ex..." alt="" coords="5,79,129,105"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Image.html" title="Abstract base class defining the interface for an image. This is the top&#45;level interface to the Exiv2..." alt="" coords="18,5,116,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,46,70,79,64,79,64,46"/>
+</map>

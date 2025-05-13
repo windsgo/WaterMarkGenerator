@@ -1,1 +1,11 @@
-*.pro.user
+*~
+*.autosave
+
+# qtcreator generated files
+*.pro.user*
+*.qbs.user*
+CMakeLists.txt.user*
+
+/*.jpg
+
+/build*/

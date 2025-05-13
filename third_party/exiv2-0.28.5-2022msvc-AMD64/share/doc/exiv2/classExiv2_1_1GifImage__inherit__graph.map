@@ -1,0 +1,5 @@
+<map id="Exiv2::GifImage" name="Exiv2::GifImage">
+<area shape="rect" id="Node000001" title="Class to access raw GIF images. Exif/IPTC metadata are supported directly." alt="" coords="5,80,121,107"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Image.html" title="Abstract base class defining the interface for an image. This is the top&#45;level interface to the Exiv2..." alt="" coords="14,5,112,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,48,66,80,60,80,60,48"/>
+</map>

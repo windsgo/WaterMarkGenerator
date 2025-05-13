@@ -1,0 +1,5 @@
+<map id="Exiv2::Internal::CiffDirectory" name="Exiv2::Internal::CiffDirectory">
+<area shape="rect" id="Node000001" title="This class models a CIFF directory of a CRW (Canon Raw data) image." alt="" coords="12,80,199,107"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1CiffComponent.html" title="Interface class for components of the CIFF directory hierarchy of a CRW (Canon Raw data) image...." alt="" coords="5,5,206,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,48,108,80,103,80,103,48"/>
+</map>

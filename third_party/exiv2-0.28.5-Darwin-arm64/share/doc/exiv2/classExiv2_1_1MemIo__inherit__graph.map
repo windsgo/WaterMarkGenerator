@@ -1,0 +1,5 @@
+<map id="Exiv2::MemIo" name="Exiv2::MemIo">
+<area shape="rect" id="Node000001" title="Provides binary IO on blocks of memory by implementing the BasicIo interface. A copy&#45;on&#45;write impleme..." alt="" coords="7,79,110,105"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1BasicIo.html" title="An interface for simple binary IO." alt="" coords="5,5,112,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,46,61,79,56,79,56,46"/>
+</map>

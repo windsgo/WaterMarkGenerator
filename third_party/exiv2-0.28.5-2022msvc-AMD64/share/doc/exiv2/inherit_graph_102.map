@@ -1,0 +1,43 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classExiv2_1_1Value.html" title="Common interface for all types of values used with metadata." alt="" coords="5,335,100,361"/>
+<area shape="rect" id="Node000001" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="154,5,346,32"/>
+<area shape="poly" id="edge92_Node000000_Node000001" title=" " alt="" coords="51,319,56,261,69,186,81,147,98,109,119,73,146,42,162,30,166,35,149,46,123,76,102,111,86,149,74,188,61,261,57,319"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="154,56,346,83"/>
+<area shape="poly" id="edge93_Node000000_Node000002" title=" " alt="" coords="53,318,61,269,76,208,104,146,123,118,146,93,163,81,166,85,149,97,127,121,108,149,81,210,66,270,59,319"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="148,107,352,133"/>
+<area shape="poly" id="edge94_Node000000_Node000003" title=" " alt="" coords="56,319,67,279,84,232,110,184,127,162,146,143,165,132,168,136,149,147,130,166,114,187,89,234,72,281,62,320"/>
+<area shape="rect" id="Node000004" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="157,157,342,184"/>
+<area shape="poly" id="edge95_Node000000_Node000004" title=" " alt="" coords="61,319,92,256,116,222,146,194,167,182,170,187,149,198,120,226,97,258,66,321"/>
+<area shape="rect" id="Node000005" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="157,208,342,235"/>
+<area shape="poly" id="edge96_Node000000_Node000005" title=" " alt="" coords="69,320,102,281,123,261,146,244,172,233,174,238,149,249,126,265,106,284,73,324"/>
+<area shape="rect" id="Node000006" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="153,259,347,285"/>
+<area shape="poly" id="edge97_Node000000_Node000006" title=" " alt="" coords="87,324,147,295,182,283,184,288,149,300,90,329"/>
+<area shape="rect" id="Node000007" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="164,309,336,336"/>
+<area shape="poly" id="edge98_Node000000_Node000007" title=" " alt="" coords="115,337,163,331,164,336,115,343"/>
+<area shape="rect" id="Node000008" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="158,360,342,387"/>
+<area shape="poly" id="edge99_Node000000_Node000008" title=" " alt="" coords="115,353,158,359,157,364,115,359"/>
+<area shape="rect" id="Node000009" href="$classExiv2_1_1DataValue.html" title="Value for an undefined data type." alt="" coords="189,411,311,437"/>
+<area shape="poly" id="edge100_Node000000_Node000009" title=" " alt="" coords="90,367,149,396,189,409,187,414,147,401,87,372"/>
+<area shape="rect" id="Node000010" href="$classExiv2_1_1DateValue.html" title="Value for simple ISO 8601 dates" alt="" coords="189,461,311,488"/>
+<area shape="poly" id="edge101_Node000000_Node000010" title=" " alt="" coords="73,372,106,412,126,431,149,447,189,463,187,468,146,452,123,435,102,415,69,376"/>
+<area shape="rect" id="Node000011" href="$classExiv2_1_1StringValueBase.html" title="Abstract base class for a string based Value type." alt="" coords="171,512,329,539"/>
+<area shape="poly" id="edge102_Node000000_Node000011" title=" " alt="" coords="66,375,97,438,120,470,149,498,172,510,169,515,146,502,116,474,92,440,61,377"/>
+<area shape="rect" id="Node000015" href="$classExiv2_1_1TimeValue.html" title="Value for simple ISO 8601 times." alt="" coords="188,563,312,589"/>
+<area shape="poly" id="edge106_Node000000_Node000015" title=" " alt="" coords="62,376,72,415,89,462,114,509,130,530,149,549,168,560,189,567,187,572,166,565,146,553,127,534,110,512,84,464,67,417,56,377"/>
+<area shape="rect" id="Node000016" href="$classExiv2_1_1ValueType.html" title="Template for a Value of a basic type. This is used for unsigned and signed short, long and rationals." alt="" coords="173,613,326,640"/>
+<area shape="poly" id="edge107_Node000000_Node000016" title=" " alt="" coords="59,377,66,426,81,486,108,547,127,575,149,599,174,614,171,619,146,603,123,578,104,550,76,488,61,427,53,378"/>
+<area shape="rect" id="Node000017" href="$classExiv2_1_1XmpValue.html" title="Base class for all Exiv2 values used to store XMP property values." alt="" coords="189,664,310,691"/>
+<area shape="poly" id="edge108_Node000000_Node000017" title=" " alt="" coords="57,377,61,435,74,508,86,547,102,585,123,620,149,650,168,662,189,670,188,675,165,667,146,654,119,623,98,587,81,549,69,510,56,435,51,377"/>
+<area shape="rect" id="Node000012" href="$classExiv2_1_1AsciiValue.html" title="Value for an Ascii string type." alt="" coords="414,461,538,488"/>
+<area shape="poly" id="edge103_Node000011_Node000012" title=" " alt="" coords="327,505,414,486,415,491,328,511"/>
+<area shape="rect" id="Node000013" href="$classExiv2_1_1CommentValue.html" title="Value for an Exif comment." alt="" coords="400,512,552,539"/>
+<area shape="poly" id="edge104_Node000011_Node000013" title=" " alt="" coords="345,523,400,523,400,528,345,528"/>
+<area shape="rect" id="Node000014" href="$classExiv2_1_1StringValue.html" title="Value for string type." alt="" coords="412,563,540,589"/>
+<area shape="poly" id="edge105_Node000011_Node000014" title=" " alt="" coords="328,540,414,559,413,565,327,545"/>
+<area shape="rect" id="Node000018" href="$classExiv2_1_1LangAltValue.html" title="Value type for XMP language alternative properties." alt="" coords="407,613,545,640"/>
+<area shape="poly" id="edge109_Node000017_Node000018" title=" " alt="" coords="325,658,413,638,414,643,327,663"/>
+<area shape="rect" id="Node000019" href="$classExiv2_1_1XmpArrayValue.html" title="Value type for simple arrays. Each item in the array is a simple value, without qualifiers...." alt="" coords="400,664,552,691"/>
+<area shape="poly" id="edge110_Node000017_Node000019" title=" " alt="" coords="326,675,400,675,400,680,326,680"/>
+<area shape="rect" id="Node000020" href="$classExiv2_1_1XmpTextValue.html" title="Value type suitable for simple XMP properties and XMP nodes of complex types which are not parsed int..." alt="" coords="403,715,549,741"/>
+<area shape="poly" id="edge111_Node000017_Node000020" title=" " alt="" coords="327,692,414,711,413,717,325,697"/>
+</map>

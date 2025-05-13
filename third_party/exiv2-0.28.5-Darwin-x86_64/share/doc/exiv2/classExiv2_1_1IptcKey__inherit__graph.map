@@ -1,0 +1,5 @@
+<map id="Exiv2::IptcKey" name="Exiv2::IptcKey">
+<area shape="rect" id="Node000001" title="Concrete keys for IPTC metadata." alt="" coords="5,79,113,105"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Key.html" title="Abstract base class defining the Key of a metadatum. Keys are used to identify and group metadata." alt="" coords="16,5,102,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,46,62,79,56,79,56,46"/>
+</map>

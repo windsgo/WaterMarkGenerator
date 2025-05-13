@@ -1,0 +1,5 @@
+<map id="Exiv2::Internal::TiffIfdMakernote" name="Exiv2::Internal::TiffIfdMakernote">
+<area shape="rect" id="Node000001" title="Tiff IFD Makernote. This is a concrete class suitable for all IFD makernotes." alt="" coords="31,79,179,120"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1TiffComponent.html" title="Interface class for components of a TIFF directory hierarchy (Composite pattern). Both TIFF directori..." alt="" coords="5,5,205,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,46,108,79,102,79,102,46"/>
+</map>

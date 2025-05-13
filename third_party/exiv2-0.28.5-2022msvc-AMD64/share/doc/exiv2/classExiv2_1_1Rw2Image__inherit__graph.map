@@ -1,0 +1,5 @@
+<map id="Exiv2::Rw2Image" name="Exiv2::Rw2Image">
+<area shape="rect" id="Node000001" title="Class to access raw Panasonic RW2 images. Exif metadata is supported directly, IPTC and XMP are read ..." alt="" coords="5,80,131,107"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Image.html" title="Abstract base class defining the interface for an image. This is the top&#45;level interface to the Exiv2..." alt="" coords="19,5,117,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,48,71,80,65,80,65,48"/>
+</map>

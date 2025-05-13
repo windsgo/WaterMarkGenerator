@@ -1,0 +1,21 @@
+<map id="Exiv2::ValueType&lt; T &gt;" name="Exiv2::ValueType&lt; T &gt;">
+<area shape="rect" id="Node000001" title="Template for a Value of a basic type. This is used for unsigned and signed short, long and rationals." alt="" coords="149,179,303,204"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="443,5,636,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="240,163,275,114,298,88,326,67,383,40,442,25,443,30,385,45,329,71,302,92,279,117,244,166"/>
+<area shape="rect" id="Node000004" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="443,55,636,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="252,166,286,140,326,116,387,93,447,78,448,84,388,98,328,121,289,144,255,170"/>
+<area shape="rect" id="Node000005" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="437,104,642,130"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="276,170,327,154,451,128,452,133,328,159,277,175"/>
+<area shape="rect" id="Node000006" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="447,153,632,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="319,181,446,171,447,176,319,187"/>
+<area shape="rect" id="Node000007" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="447,203,632,228"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="305,205,328,208,447,214,446,219,327,213,304,210"/>
+<area shape="rect" id="Node000008" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="442,252,637,278"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="267,209,328,233,385,246,442,255,442,260,384,252,327,238,265,214"/>
+<area shape="rect" id="Node000009" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="454,301,625,327"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="251,213,286,245,328,272,391,294,454,306,453,311,390,299,326,277,282,249,248,217"/>
+<area shape="rect" id="Node000010" href="$classExiv2_1_1ValueType.html" title=" " alt="" coords="447,351,632,376"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="243,217,277,270,301,297,329,319,357,333,386,344,447,357,446,362,385,349,354,338,326,323,297,301,273,273,238,220"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Value.html" title="Common interface for all types of values used with metadata." alt="" coords="5,179,100,204"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,189,149,189,149,194,115,194"/>
+</map>

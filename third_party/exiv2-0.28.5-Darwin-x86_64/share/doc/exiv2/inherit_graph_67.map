@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classExiv2_1_1Internal_1_1TiffHeaderBase.html" title="Contains internal objects which are not published and are not part of the libexiv2 API." alt="" coords="5,80,210,106"/>
+<area shape="rect" id="Node000001" href="$classExiv2_1_1Internal_1_1Cr2Header.html" title="Canon CR2 header structure." alt="" coords="261,5,437,31"/>
+<area shape="poly" id="edge77_Node000000_Node000001" title=" " alt="" coords="159,72,257,40,294,29,295,34,258,45,161,77"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1OrfHeader.html" title="Olympus ORF header structure." alt="" coords="262,55,436,80"/>
+<area shape="poly" id="edge78_Node000000_Node000002" title=" " alt="" coords="225,78,261,74,262,79,225,83"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1Internal_1_1Rw2Header.html" title="Panasonic RW2 header structure." alt="" coords="258,104,440,130"/>
+<area shape="poly" id="edge79_Node000000_Node000003" title=" " alt="" coords="225,102,257,105,257,110,225,107"/>
+<area shape="rect" id="Node000004" href="$classExiv2_1_1Internal_1_1TiffHeader.html" title="Standard TIFF header structure." alt="" coords="262,153,436,179"/>
+<area shape="poly" id="edge80_Node000000_Node000004" title=" " alt="" coords="163,109,258,140,296,150,294,155,257,145,161,114"/>
+</map>

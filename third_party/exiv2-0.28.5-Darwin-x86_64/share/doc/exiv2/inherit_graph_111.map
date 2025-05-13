@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,35,109,60"/>
+<area shape="rect" id="Node000001" href="$classExiv2_1_1Error.html" title="Simple error class used for exceptions. An output operator is provided to print errors to a stream." alt="" coords="193,5,284,31"/>
+<area shape="poly" id="edge112_Node000000_Node000001" title=" " alt="" coords="123,34,192,23,193,28,124,39"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1LensInfoNotFound.html" title=" " alt="" coords="157,55,320,96"/>
+<area shape="poly" id="edge113_Node000000_Node000002" title=" " alt="" coords="124,55,156,60,156,65,124,60"/>
+</map>

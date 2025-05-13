@@ -1,0 +1,11 @@
+<map id="Exiv2::XmpValue" name="Exiv2::XmpValue">
+<area shape="rect" id="Node000001" title="Base class for all Exiv2 values used to store XMP property values." alt="" coords="183,80,304,107"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1LangAltValue.html" title="Value type for XMP language alternative properties." alt="" coords="5,155,144,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,116,105,156,103,152,199,111"/>
+<area shape="rect" id="Node000004" href="$classExiv2_1_1XmpArrayValue.html" title="Value type for simple arrays. Each item in the array is a simple value, without qualifiers...." alt="" coords="168,155,320,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="246,122,246,154,241,154,241,122"/>
+<area shape="rect" id="Node000005" href="$classExiv2_1_1XmpTextValue.html" title="Value type suitable for simple XMP properties and XMP nodes of complex types which are not parsed int..." alt="" coords="344,155,490,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="289,111,388,152,386,156,287,115"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Value.html" title="Common interface for all types of values used with metadata." alt="" coords="197,5,291,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="246,48,246,80,241,80,241,48"/>
+</map>

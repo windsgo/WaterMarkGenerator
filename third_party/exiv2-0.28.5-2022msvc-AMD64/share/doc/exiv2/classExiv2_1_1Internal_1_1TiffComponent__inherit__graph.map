@@ -1,0 +1,27 @@
+<map id="Exiv2::Internal::TiffComponent" name="Exiv2::Internal::TiffComponent">
+<area shape="rect" id="Node000001" title="Interface class for components of a TIFF directory hierarchy (Composite pattern). Both TIFF directori..." alt="" coords="5,205,204,232"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1TiffDirectory.html" title="This class models a TIFF directory (Ifd). It is a composite component of the TIFF tree." alt="" coords="256,155,440,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,199,280,179,281,185,188,204"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1Internal_1_1TiffEntryBase.html" title="This abstract base class provides the common functionality of an IFD directory entry and defines an e..." alt="" coords="252,205,444,232"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="219,216,251,216,251,221,219,221"/>
+<area shape="rect" id="Node000013" href="$classExiv2_1_1Internal_1_1TiffIfdMakernote.html" title="Tiff IFD Makernote. This is a concrete class suitable for all IFD makernotes." alt="" coords="275,256,421,299"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="178,234,275,257,274,262,177,239"/>
+<area shape="rect" id="Node000004" href="$classExiv2_1_1Internal_1_1TiffBinaryArray.html" title="Composite to model an array of different tags. The tag types as well as other aspects of the array ar..." alt="" coords="498,5,666,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="438,195,442,191,455,176,462,160,466,127,470,93,477,76,490,58,505,46,508,51,494,62,481,78,475,94,471,128,467,162,460,179,446,195,441,199"/>
+<area shape="rect" id="Node000005" href="$classExiv2_1_1Internal_1_1TiffBinaryElement.html" title="Element of a TiffBinaryArray." alt="" coords="498,72,666,115"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="435,196,442,191,458,176,466,159,474,142,490,125,509,113,512,117,494,129,479,145,471,162,462,179,446,195,437,201"/>
+<area shape="rect" id="Node000006" href="$classExiv2_1_1Internal_1_1TiffDataEntryBase.html" title="Interface for a standard TIFF IFD entry consisting of a value which is a set of offsets to a data are..." alt="" coords="502,139,662,181"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="418,198,502,177,503,182,419,204"/>
+<area shape="rect" id="Node000009" href="$classExiv2_1_1Internal_1_1TiffEntry.html" title="A standard TIFF IFD entry." alt="" coords="501,205,663,232"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="459,216,500,216,500,221,459,221"/>
+<area shape="rect" id="Node000010" href="$classExiv2_1_1Internal_1_1TiffMnEntry.html" title="This class is the basis for Makernote support in TIFF. It contains a pointer to a concrete Makernote...." alt="" coords="492,256,672,283"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="428,233,518,253,517,258,427,238"/>
+<area shape="rect" id="Node000011" href="$classExiv2_1_1Internal_1_1TiffSizeEntry.html" title="A TIFF IFD entry containing the size of a data area of a related TiffDataEntry. This component is use..." alt="" coords="504,307,661,349"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="434,236,445,242,461,254,470,267,479,280,494,292,514,304,511,309,490,297,475,284,466,270,457,258,443,246,432,241"/>
+<area shape="rect" id="Node000012" href="$classExiv2_1_1Internal_1_1TiffSubIfd.html" title="This class models a TIFF sub&#45;directory (sub&#45;IFD). A sub&#45;IFD is an entry with one or more values that ..." alt="" coords="498,373,667,400"/>
+<area shape="poly" id="edge11_Node000003_Node000012" title=" " alt="" coords="441,238,446,242,459,257,466,272,471,302,475,332,482,346,494,359,511,371,508,375,490,363,477,348,470,333,465,303,461,274,454,260,442,246,438,242"/>
+<area shape="rect" id="Node000007" href="$classExiv2_1_1Internal_1_1TiffDataEntry.html" title="A standard TIFF IFD entry consisting of a value which is an offset to a data area and the data area...." alt="" coords="724,105,884,148"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="676,143,724,136,724,141,677,148"/>
+<area shape="rect" id="Node000008" href="$classExiv2_1_1Internal_1_1TiffImageEntry.html" title="A standard TIFF IFD entry consisting of a value which is an array of offsets to image data areas...." alt="" coords="720,172,888,215"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="677,172,720,178,719,183,676,177"/>
+</map>

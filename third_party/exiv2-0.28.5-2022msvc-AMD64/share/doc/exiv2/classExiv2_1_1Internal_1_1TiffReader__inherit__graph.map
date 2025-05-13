@@ -1,0 +1,5 @@
+<map id="Exiv2::Internal::TiffReader" name="Exiv2::Internal::TiffReader">
+<area shape="rect" id="Node000001" title="TIFF composite visitor to read the TIFF structure from a block of memory and build the composite from..." alt="" coords="5,80,179,107"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1TiffVisitor.html" title="Abstract base class defining the interface for TIFF composite visitors (Visitor pattern)" alt="" coords="8,5,176,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,48,95,80,89,80,89,48"/>
+</map>

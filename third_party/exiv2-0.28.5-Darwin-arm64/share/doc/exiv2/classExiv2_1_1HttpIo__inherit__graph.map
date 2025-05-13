@@ -1,0 +1,7 @@
+<map id="Exiv2::HttpIo" name="Exiv2::HttpIo">
+<area shape="rect" id="Node000001" title="Provides the http read/write access for the RemoteIo." alt="" coords="16,153,114,178"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1RemoteIo.html" title="Provides remote binary file IO by implementing the BasicIo interface. This is an abstract class...." alt="" coords="5,79,125,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,120,68,152,62,152,62,120"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1BasicIo.html" title="An interface for simple binary IO." alt="" coords="12,5,118,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="68,46,68,79,62,79,62,46"/>
+</map>

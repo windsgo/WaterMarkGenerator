@@ -1,0 +1,24 @@
+<map id="Exiv2::Slice&lt; const container &gt;" name="Exiv2::Slice&lt; const container &gt;">
+<area shape="rect" id="Node000001" title="Specialization of slices for constant containers." alt="" coords="1684,141,1819,184"/>
+<area shape="rect" id="Node000002" href="$structExiv2_1_1Internal_1_1MutableSliceBase.html" title=" " alt="" coords="1102,84,1301,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1317,130,1351,135,1531,150,1683,158,1683,163,1531,155,1350,140,1316,136"/>
+<area shape="rect" id="Node000009" href="$structExiv2_1_1Slice.html" title="Slice (= view) for STL containers." alt="" coords="1350,99,1519,125"/>
+<area shape="poly" id="edge13_Node000009_Node000002" title=" " alt="" coords="1317,110,1350,110,1350,115,1317,115"/>
+<area shape="rect" id="Node000003" href="$structExiv2_1_1Internal_1_1ConstSliceBase.html" title=" " alt="" coords="662,88,882,147"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="897,114,1101,112,1101,117,897,119"/>
+<area shape="rect" id="Node000004" href="$structExiv2_1_1Internal_1_1SliceBase.html" title=" " alt="" coords="5,97,178,124"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="193,107,638,109,662,110,662,115,638,115,193,112"/>
+<area shape="rect" id="Node000005" href="$structExiv2_1_1Internal_1_1ConstSliceBase.html" title="This class provides the public&#45;facing const&#45;qualified methods of a slice." alt="" coords="227,131,442,173"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="189,125,227,131,226,136,189,130"/>
+<area shape="rect" id="Node000007" href="$structExiv2_1_1Internal_1_1ConstSliceBase.html" title="This class provides the public&#45;facing const&#45;qualified methods of a slice." alt="" coords="227,13,442,56"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="148,89,201,72,259,54,261,59,202,77,149,94"/>
+<area shape="rect" id="Node000008" href="$structExiv2_1_1Internal_1_1ConstSliceBase.html" title=" " alt="" coords="662,184,882,243"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="126,131,173,159,228,183,283,198,341,210,457,222,567,225,662,221,662,227,567,230,457,228,340,215,282,203,226,188,170,163,123,135"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="458,151,547,148,638,141,661,138,662,143,639,147,547,154,458,156"/>
+<area shape="poly" id="edge11_Node000008_Node000005" title=" " alt="" coords="415,176,467,188,567,202,662,208,662,214,566,207,466,193,414,181"/>
+<area shape="rect" id="Node000006" href="$structExiv2_1_1Internal_1_1MutableSliceBase.html" title=" " alt="" coords="686,5,858,64"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="873,50,1102,92,1101,98,872,56"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="458,32,686,32,686,37,458,37"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="897,204,1683,163,1684,169,897,210"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="1534,123,1660,143,1684,147,1683,152,1659,148,1533,128"/>
+</map>

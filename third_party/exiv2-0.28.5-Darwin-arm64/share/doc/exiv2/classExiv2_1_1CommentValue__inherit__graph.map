@@ -1,0 +1,7 @@
+<map id="Exiv2::CommentValue" name="Exiv2::CommentValue">
+<area shape="rect" id="Node000001" title="Value for an Exif comment." alt="" coords="9,153,160,178"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1StringValueBase.html" title="Abstract base class for a string based Value type." alt="" coords="5,79,164,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,120,87,152,82,152,82,120"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1Value.html" title="Common interface for all types of values used with metadata." alt="" coords="37,5,132,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,46,87,79,82,79,82,46"/>
+</map>

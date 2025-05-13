@@ -1,0 +1,7 @@
+<map id="Exiv2::Internal::TiffSizeEntry" name="Exiv2::Internal::TiffSizeEntry">
+<area shape="rect" id="Node000001" title="A TIFF IFD entry containing the size of a data area of a related TiffDataEntry. This component is use..." alt="" coords="26,155,183,197"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1TiffEntryBase.html" title="This abstract base class provides the common functionality of an IFD directory entry and defines an e..." alt="" coords="8,80,201,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,122,107,154,102,154,102,122"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1Internal_1_1TiffComponent.html" title="Interface class for components of a TIFF directory hierarchy (Composite pattern). Both TIFF directori..." alt="" coords="5,5,204,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,48,107,80,102,80,102,48"/>
+</map>

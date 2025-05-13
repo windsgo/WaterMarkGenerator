@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classExiv2_1_1Internal_1_1TiffVisitor.html" title="Abstract base class defining the interface for TIFF composite visitors (Visitor pattern)" alt="" coords="5,104,175,130"/>
+<area shape="rect" id="Node000001" href="$classExiv2_1_1Internal_1_1TiffCopier.html" title="Copy all image tags from the source tree (the tree that is traversed) to a target tree,..." alt="" coords="228,5,398,31"/>
+<area shape="poly" id="edge81_Node000000_Node000001" title=" " alt="" coords="122,93,168,66,222,40,253,29,254,34,224,45,171,70,125,98"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Internal_1_1TiffDecoder.html" title="TIFF composite visitor to decode metadata from the TIFF tree and add it to an Image,..." alt="" coords="223,55,404,80"/>
+<area shape="poly" id="edge82_Node000000_Node000002" title=" " alt="" coords="166,97,251,78,252,84,167,103"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1Internal_1_1TiffEncoder.html" title="TIFF composite visitor to encode metadata from an image to the TIFF tree. The metadata containers and..." alt="" coords="223,104,404,130"/>
+<area shape="poly" id="edge83_Node000000_Node000003" title=" " alt="" coords="190,114,223,114,223,120,190,120"/>
+<area shape="rect" id="Node000004" href="$classExiv2_1_1Internal_1_1TiffFinder.html" title="Search the composite for a component with tag and group. Return a pointer to the component or 0,..." alt="" coords="229,153,398,179"/>
+<area shape="poly" id="edge84_Node000000_Node000004" title=" " alt="" coords="167,131,252,150,251,155,166,136"/>
+<area shape="rect" id="Node000005" href="$classExiv2_1_1Internal_1_1TiffReader.html" title="TIFF composite visitor to read the TIFF structure from a block of memory and build the composite from..." alt="" coords="226,203,400,228"/>
+<area shape="poly" id="edge85_Node000000_Node000005" title=" " alt="" coords="125,136,171,163,224,189,254,200,253,205,222,194,168,168,122,141"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Exiv2::CrwImage" name="Exiv2::CrwImage">
+<area shape="rect" id="Node000001" title="Class to access raw Canon CRW images. Only Exif metadata and a comment are supported...." alt="" coords="5,79,128,105"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1Image.html" title="Abstract base class defining the interface for an image. This is the top&#45;level interface to the Exiv2..." alt="" coords="17,5,116,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,46,69,79,64,79,64,46"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classExiv2_1_1Key.html" title="Abstract base class defining the Key of a metadatum. Keys are used to identify and group metadata." alt="" coords="5,56,91,83"/>
+<area shape="rect" id="Node000001" href="$classExiv2_1_1ExifKey.html" title="Concrete keys for Exif metadata and access to Exif tag reference data." alt="" coords="141,5,249,32"/>
+<area shape="poly" id="edge86_Node000000_Node000001" title=" " alt="" coords="102,48,153,30,155,35,104,53"/>
+<area shape="rect" id="Node000002" href="$classExiv2_1_1IptcKey.html" title="Concrete keys for IPTC metadata." alt="" coords="141,56,248,83"/>
+<area shape="poly" id="edge87_Node000000_Node000002" title=" " alt="" coords="106,67,141,67,141,72,106,72"/>
+<area shape="rect" id="Node000003" href="$classExiv2_1_1XmpKey.html" title="Concrete keys for XMP metadata." alt="" coords="139,107,251,133"/>
+<area shape="poly" id="edge88_Node000000_Node000003" title=" " alt="" coords="104,86,155,104,153,109,102,91"/>
+</map>
