@@ -2,13 +2,15 @@ cmake_minimum_required(VERSION 3.16)
 
 project(watermark_qt6 VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_BUILD_TYPE Release) # Debug MSVC has bug
+if (MSVC)
+  set(CMAKE_BUILD_TYPE Release) # Debug MSVC has bug
 
-if (POLICY CMP0091)
-  cmake_policy(SET CMP0091 NEW)
-endif (POLICY CMP0091)
-# set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:DebugDLL>")
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+  if (POLICY CMP0091)
+    cmake_policy(SET CMP0091 NEW)
+  endif (POLICY CMP0091)
+  # set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:DebugDLL>")
+  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+endif()
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -20,7 +22,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
-add_subdirectory(third_party)
+option(USE_QEXIF_LIB "use qexif lib rather than exiv2" OFF) # all platform but has bugs (qexif is not good enough)
+option(USE_EXIV2_SOURCE "if use exiv2, open this to build from source (cross platform) " ON) # allow all platform build, not only MSVC
+
+if (USE_QEXIF_LIB)
+  message(STATUS "using qexif lib")
+  add_compile_definitions("-DUSE_QEXIF_LIB") # for cpp use
+endif ()
 
 set(TS_FILES watermark_qt6_zh_CN.ts)
 
@@ -66,11 +74,45 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-find_package(exiv2 REQUIRED CONFIG NAMES exiv2)    # search ${CMAKE_INSTALL_PREFIX}/lib/cmake/exiv2/
+if (USE_QEXIF_LIB)
+  find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core5Compat)
+  find_package(Qt${QT_VERSION_MAJOR} REQUIRED Core5Compat)
+  add_library(qexif STATIC
+    ${PROJECT_SOURCE_DIR}/third_party/qexif/qexifimageheader.cpp
+    ${PROJECT_SOURCE_DIR}/third_party/qexif/qexifimageheader.h
+    ${PROJECT_SOURCE_DIR}/third_party/qexif/qmetadata.cpp
+    ${PROJECT_SOURCE_DIR}/third_party/qexif/qmetadata.h
+  )
+  target_link_libraries(qexif PUBLIC
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Core5Compat
+  )
+  target_include_directories(watermark_qt6 PRIVATE
+    ${PROJECT_SOURCE_DIR}/third_party/qexif
+  )
+target_link_libraries(watermark_qt6 PRIVATE
+  qexif
+)
+else()
+  if (USE_EXIV2_SOURCE)
+    message(STATUS "build exiv2 from source ...")
+    include_directories(${PROJECT_BINARY_DIR})
+    include_directories(${PROJECT_SOURCE_DIR}/third_party/exiv2-0.28.5/)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/third_party/exiv2-0.28.5/)
+  else()
+    message(STATUS "use exiv2 binaries ...")
+    add_subdirectory(${PROJECT_SOURCE_DIR}/third_party)
+    find_package(exiv2 REQUIRED CONFIG NAMES exiv2)    # search ${CMAKE_INSTALL_PREFIX}/lib/cmake/exiv2/
+  endif()
+  target_link_libraries(watermark_qt6 PRIVATE
+    Exiv2::exiv2lib
+  )
+endif()
+
 target_link_libraries(watermark_qt6 PRIVATE
   Qt${QT_VERSION_MAJOR}::Widgets
   Qt${QT_VERSION_MAJOR}::Core
-  Exiv2::exiv2lib
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

@@ -6,7 +6,12 @@
 
 #include "../src/WaterMarkHolder.h"
 
+#ifdef USE_QEXIF_LIB
+#include "qexifimageheader.h"
+#include "qmetadata.h"
+#else // !USE_QEXIF_LIB
 #include "exiv2/exiv2.hpp"
+#endif // USE_QEXIF_LIB
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -52,7 +57,11 @@ private:
     Ui::MainWindow *ui;
 
     QString loaded_filename_;
+#ifdef USE_QEXIF_LIB
+    // QEXIF lib do not support cache exif message ... (disabled copy ctor)
+#else // !USE_QEXIF_LIB
     Exiv2::ExifData loaded_img_exif_;
+#endif // USE_QEXIF_LIB
 
     wmg::WaterMarkHolder::ptr wm_holder_ {nullptr};
 

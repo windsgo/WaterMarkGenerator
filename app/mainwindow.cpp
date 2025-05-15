@@ -10,6 +10,7 @@
 
 #include "../src/Utils.h"
 
+
 #define RETURN_ERROR(err_msg) { error_msg_ = (err_msg); return false; }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -21,7 +22,11 @@ MainWindow::MainWindow(QWidget *parent)
     this->wm_holder_ = std::make_shared<wmg::WaterMarkHolder>();
 
     connect(ui->pbGetExifTime, &QPushButton::clicked, this, [&]() {
+#ifdef USE_QEXIF_LIB
+        auto str_opt = wmg::Utils::getShootDateTimeStringOfPicture(loaded_filename_);
+#else // !USE_QEXIF_LIB
         auto str_opt = wmg::Utils::getShootDateTimeStringFromExifData(loaded_img_exif_);
+#endif // USE_QEXIF_LIB
 
         if (!str_opt) {
             QMessageBox::warning(this, tr("获取拍摄时间失败"), tr("获取拍摄时间失败, 照片可能没有记录此信息"));
@@ -217,7 +222,9 @@ void MainWindow::_reset()
     _updateListWidgetAccordingToWMHolder();
 
     loaded_filename_.clear();
+#ifndef USE_QEXIF_LIB
     loaded_img_exif_.clear();
+#endif // !USE_QEXIF_LIB
 
     ui->lbPicture->clear();
     ui->lbPicture->setText(tr("请载入图片"));
@@ -243,6 +250,18 @@ void MainWindow::_updateListWidgetAccordingToWMHolder()
     ui->listWidgetWM->setCurrentRow(old_row);
     qDebug() << "_updateListWidgetAccordingToWMHolder exit";
 }
+
+// template <typename TAG_T>
+// static void func_taglist(QExifImageHeader * eh, const QList<TAG_T>& tags) {
+//     for (int i = 0; i < tags.size(); ++i) {
+//         auto tag = tags[i];
+//         auto v = eh->value(tag);
+//         qDebug() << "**" << i << "** tag:" << tag << ", type:" << v.type()
+//                  << ", str:" << v.toString()
+//                  << ", rational:" << v.toRational().first << v.toRational().second
+//                  << ", ushort" << v.toShort();
+//     }
+// };
 
 void MainWindow::_do_loadFile()
 {
@@ -273,27 +292,55 @@ void MainWindow::_do_loadFile()
     current_state_ = State::FileLoaded;
     loaded_filename_ = filename;
 
+#ifndef USE_QEXIF_LIB
     auto exif_opt = wmg::Utils::getExifDataOfPicture(filename);
     if (exif_opt) {
         loaded_img_exif_ = std::move(*exif_opt);
     } else {
         loaded_img_exif_.clear();
     }
+#endif // !USE_QEXIF_LIB
 
     // 增加一个水印
     ui->pbGetExifTime->click();
     _do_add_one_wm();
 
     int dpi = 123;
+#ifdef USE_QEXIF_LIB
+    if (auto dpi_rational_opt = wmg::Utils::getExifDPIResolutionOfPicture(filename)) {
+        dpi = static_cast<double>(dpi_rational_opt->first) / dpi_rational_opt->second;
+    }
+#else // !USE_QEXIF_LIB
     if (loaded_img_exif_.findKey(Exiv2::ExifKey{WMG_EXIFDATA_KEYSTR_EXIF_XRESOLUTION}) != loaded_img_exif_.end()) {
         auto rational = loaded_img_exif_[WMG_EXIFDATA_KEYSTR_EXIF_XRESOLUTION].value().toRational();
         dpi = static_cast<double>(rational.first) / rational.second;
-    } else {
+    }
+#endif // USE_QEXIF_LIB
+    else {
         // use qimage things
         int dpm = image.dotsPerMeterX();
         dpi = dpm * 0.0254;
     }
     ui->sb_export_dpi->setValue(dpi);
+
+    // auto emd = QMetaData{filename};
+    // auto eh_list = emd.exifImageHeaderList();
+    // if (!eh_list) {
+    //     qDebug() << "!eh_list";
+    // } else {
+    //     qDebug() << "eh_list->size():" << eh_list->size();
+    //     if (eh_list->size() > 0) {
+    //         auto eh0 = eh_list->at(0);
+
+    //         auto eh0_itags = eh0->imageTags();
+    //         qDebug() << "eh0_itags.size():" << eh0_itags.size();
+    //         func_taglist(eh0, eh0_itags);
+
+    //         auto eh0_etags = eh0->extendedTags();
+    //         qDebug() << "eh0_etags.size():" << eh0_etags.size();
+    //         func_taglist(eh0, eh0_etags);
+    //     }
+    // }
 
     QMessageBox::information(this, tr("通知"),
                              tr("载入文件成功"));
@@ -305,6 +352,74 @@ void MainWindow::_do_loadFile()
         return;
     }
 }
+
+#ifdef USE_QEXIF_LIB
+static bool _write_dpi_and_copy_exifdata_to_file(const QString& src_filename, const QString& target_filename, int dpi)
+{
+    {
+        QFileInfo fileinfo(src_filename);
+        if (!fileinfo.exists()) {
+            return false;
+        }
+    }
+
+    {
+        QFileInfo fileinfo(target_filename);
+        if (!fileinfo.exists()) {
+            return false;
+        }
+    }
+
+    // read source metadata
+    auto src_metadata = QMetaData(src_filename);
+    auto p_src_exif_header_list = src_metadata.exifImageHeaderList();
+    if (!p_src_exif_header_list || p_src_exif_header_list->empty()) {
+        qWarning() << "_write_dpi_and_copy_exifdata_to_file" << "!p_src_exif_header_list || p_src_exif_header_list->empty()";
+        return false;
+    }
+
+    auto p_src_exif_header_0 = p_src_exif_header_list->at(0);
+    if (!p_src_exif_header_0) {
+        qWarning() << "_write_dpi_and_copy_exifdata_to_file" << "!p_src_exif_header_0";
+        return false;
+    }
+
+    // read target metadata
+    auto tar_metadata = QMetaData(target_filename);
+    auto p_tar_exif_header_list = tar_metadata.exifImageHeaderList();
+    if (!p_tar_exif_header_list) {
+        qWarning() << "_write_dpi_and_copy_exifdata_to_file" << "!p_tar_exif_header_list";
+        return false;
+    }
+
+    if (p_tar_exif_header_list->empty()) {
+        qWarning() << "_write_dpi_and_copy_exifdata_to_file" << "p_tar_exif_header_list->empty()";
+        qDebug() << "insert empty exif header to target: " << target_filename;
+
+        p_tar_exif_header_list->append(new QExifImageHeader{});
+    }
+
+    auto p_tar_exif_header_0 = p_tar_exif_header_list->at(0);
+    if (!p_tar_exif_header_0) {
+        qWarning() << "_write_dpi_and_copy_exifdata_to_file" << "!p_tar_exif_header_0";
+        return false;
+    }
+    *p_tar_exif_header_0 = *p_src_exif_header_0;
+
+    for (const auto& etag : tar_metadata.exifImageHeaderList()->at(0)->extendedTags()) {
+        // p_tar_exif_header_0->setValue(itag, p_src_exif_header_0->value(itag));
+        qDebug() << "etag: " << etag <<  tar_metadata.exifImageHeaderList()->at(0)->value(etag).toString();
+    }
+
+    // // change dpi
+    // p_src_exif_header_0->setValue(QExifImageHeader::ImageTag::XResolution, QExifURational{dpi, 1});
+    // p_src_exif_header_0->setValue(QExifImageHeader::ImageTag::YResolution, QExifURational{dpi, 1});
+    // p_src_exif_header_0->setValue(QExifImageHeader::ImageTag::ResolutionUnit, uint16_t{2});
+    // p_src_exif_header_0->setThumbnail(QImage{});
+
+    return tar_metadata.saveToJpeg(target_filename);
+}
+#endif // USE_QEXIF_LIB
 
 void MainWindow::_do_saveFile()
 {
@@ -347,12 +462,20 @@ void MainWindow::_do_saveFile()
     }
 
     // write dpi
+#ifdef USE_QEXIF_LIB
+    // cannot support
 
+    // bool ret = _write_dpi_and_copy_exifdata_to_file(loaded_filename_, filename, dpi);
+    // if (!ret) {
+    //     QMessageBox::warning(this, tr("错误"), tr("保存文件时, 写入DPI失败"));
+    // }
+#else // !USE_QEXIF_LIB
     auto temp_exif = loaded_img_exif_;
     qDebug() << "dpi:" << dpi;
     temp_exif[WMG_EXIFDATA_KEYSTR_EXIF_XRESOLUTION] = Exiv2::Rational(dpi, 1);
     temp_exif[WMG_EXIFDATA_KEYSTR_EXIF_YRESOLUTION] = Exiv2::Rational(dpi, 1);
     temp_exif[WMG_EXIFDATA_KEYSTR_EXIF_RESOLUTIONUNIT] = Exiv2::UShortValue(2);
+
     temp_exif[WMG_EXIFDATA_KEYSTR_THUMBNAIL_XRESOLUTION] = Exiv2::Rational(dpi, 1);
     temp_exif[WMG_EXIFDATA_KEYSTR_THUMBNAIL_YRESOLUTION] = Exiv2::Rational(dpi, 1);
     temp_exif[WMG_EXIFDATA_KEYSTR_THUMBNAIL_RESOLUTIONUNIT] = Exiv2::UShortValue(2);
@@ -363,7 +486,7 @@ void MainWindow::_do_saveFile()
     // }
 
     try {
-        auto image = Exiv2::ImageFactory::open(filename.toStdString());
+        auto image = Exiv2::ImageFactory::open(filename.toLocal8Bit().toStdString());
 
         image->setExifData(temp_exif);
         image->writeMetadata();
@@ -372,6 +495,7 @@ void MainWindow::_do_saveFile()
         qDebug() << " Exiv2::Error: " << e.what();
         QMessageBox::warning(this, tr("错误"), tr("保存文件时, 写入DPI失败: %0").arg(e.what()));
     }
+#endif // USE_QEXIF_LIB
 
     QMessageBox::information(this, tr("通知"),
                              tr("保存文件成功: %0").arg(filename));
@@ -413,7 +537,7 @@ void MainWindow::_do_confirmEdit()
 void MainWindow::_do_add_one_wm()
 {
     qDebug() << "_do_add_one_wm";
-    Q_ASSERT(ui->listWidgetWM->count() != wm_holder_->getDesciptionList().size());
+    Q_ASSERT(ui->listWidgetWM->count() == wm_holder_->getDesciptionList().size());
     if (ui->listWidgetWM->count() != wm_holder_->getDesciptionList().size()) {
         qCritical() << "ui->listWidgetWM->count() != wm_holder_->getDesciptionList().size()";
     }

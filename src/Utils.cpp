@@ -5,8 +5,6 @@
 #include <QFileInfo>
 #include <QDateTime>
 
-#include "exiv2/exiv2.hpp"
-
 static constexpr const char* s_date_format = "'`'yy MM dd";
 static constexpr const char* s_exifdate_format = "yyyy:MM:dd hh:mm:ss";
 
@@ -23,6 +21,55 @@ std::optional<QFont> Utils::getFontFromFile(const QString &font_path)
     return QFont(msyh);
 }
 
+#ifdef USE_QEXIF_LIB
+std::optional<QString> Utils::getShootDateTimeStringOfPicture(const QString &filename)
+{
+    QString date_qstr;
+    auto v1_opt = getExifDataOfPictureByKey(filename, QExifImageHeader::ExifExtendedTag::DateTimeOriginal);
+    if (v1_opt) {
+        // found
+        date_qstr = v1_opt->toString();
+    } else {
+        // not found, try another
+        auto v2_opt = getExifDataOfPictureByKey(filename, QExifImageHeader::ExifExtendedTag::DateTimeDigitized);
+        if (v2_opt) {
+            date_qstr = v2_opt->toString();
+        } else {
+            // still not found
+            return std::nullopt;
+        }
+    }
+
+    auto datetime = QDateTime::fromString(date_qstr, s_exifdate_format);
+    if (datetime.isNull()) {
+        qWarning() << "Get ExifDateTime error: convert to QDateTime failed: " << date_qstr;
+        return std::nullopt;
+    }
+
+    return datetime.toString(s_date_format);
+}
+
+std::optional<QExifURational> Utils::getExifDPIResolutionOfPicture(const QString &filename)
+{
+    auto v_opt = getExifDataOfPictureByKey(filename, QExifImageHeader::ImageTag::XResolution);
+    if (!v_opt) {
+        return std::nullopt;
+    }
+
+    return v_opt->toRational();
+}
+
+std::optional<quint16> Utils::getExifDPIUnitOfPicture(const QString &filename)
+{
+    auto v_opt = getExifDataOfPictureByKey(filename, QExifImageHeader::ImageTag::ResolutionUnit);
+    if (!v_opt) {
+        return std::nullopt;
+    }
+
+    return v_opt->toShort();
+}
+
+#else // !USE_QEXIF_LIB
 std::optional<Exiv2::ExifData> Utils::getExifDataOfPicture(const QString &filename)
 {
     QFileInfo fileinfo(filename);
@@ -30,7 +77,7 @@ std::optional<Exiv2::ExifData> Utils::getExifDataOfPicture(const QString &filena
         return std::nullopt;
     }
 
-    auto filename_stdstr = filename.toStdString();
+    auto filename_stdstr = filename.toLocal8Bit().toStdString(); // support chinese name folder and pics
 
     try {
         auto image = Exiv2::ImageFactory::open(filename_stdstr);
@@ -97,6 +144,7 @@ std::optional<QString> Utils::getShootDateTimeStringFromExifData(const Exiv2::Ex
 
     return datetime.toString(s_date_format);
 }
+#endif // USE_QEXIF_LIB
 
 std::optional<QString> Utils::getBirthTimeStringOfFile(const QString &filename)
 {
