@@ -58,8 +58,20 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/WaterMarkDesc.cpp
         src/WaterMarkHolder.h src/WaterMarkHolder.cpp
         app/MainWindowAndroid.h app/MainWindowAndroid.cpp app/MainWindowAndroid.ui
-        resource/AndroidManifest.xml
+        android/AndroidManifest.xml
+        android/AndroidManifest.xml android/build.gradle android/res/values/libs.xml android/res/xml/qtprovider_paths.xml
+        android/AndroidManifest.xml android/build.gradle android/res/values/libs.xml android/res/xml/qtprovider_paths.xml
+        android/AndroidManifest.xml android/build.gradle android/res/values/libs.xml android/res/xml/qtprovider_paths.xml
     )
+
+  if(ANDROID)
+    set_target_properties(watermark_qt6 PROPERTIES
+      QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+    )
+
+    qt6_android_generate_deployment_settings(watermark_qt6)
+    qt_android_add_apk_target(watermark_qt6)
+  endif()
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET watermark_qt6 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
