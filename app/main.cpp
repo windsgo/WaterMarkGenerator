@@ -1,8 +1,14 @@
-#include "mainwindow.h"
-
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QGuiApplication>
+#include <QScreen>
+
+#ifdef BUILD_FOR_ANDROID
+#include "MainWindowAndroid.h"
+#else
+#include "mainwindow.h"
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -17,8 +23,15 @@ int main(int argc, char *argv[])
             break;
         }
     }
+
+#ifdef BUILD_FOR_ANDROID
+    MainWindowAndroid w;
+    w.show();
+    w.setFixedSize(w.size());
+#else
     MainWindow w;
     w.show();
+#endif
 
     return a.exec();
 }

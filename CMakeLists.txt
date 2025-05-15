@@ -25,6 +25,12 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 option(USE_QEXIF_LIB "use qexif lib rather than exiv2" OFF) # all platform but has bugs (qexif is not good enough)
 option(USE_EXIV2_SOURCE "if use exiv2, open this to build from source (cross platform) " ON) # allow all platform build, not only MSVC
 
+if (ANDROID)
+  option(BUILD_FOR_ANDROID "build android version" ON)
+  message(STATUS "building android")
+  add_compile_definitions("-DBUILD_FOR_ANDROID") # for cpp use
+endif()
+
 if (USE_QEXIF_LIB)
   message(STATUS "using qexif lib")
   add_compile_definitions("-DUSE_QEXIF_LIB") # for cpp use
@@ -51,6 +57,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         resource/icon.rc
         src/WaterMarkDesc.cpp
         src/WaterMarkHolder.h src/WaterMarkHolder.cpp
+        app/MainWindowAndroid.h app/MainWindowAndroid.cpp app/MainWindowAndroid.ui
+        resource/AndroidManifest.xml
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET watermark_qt6 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
