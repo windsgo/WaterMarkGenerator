@@ -213,26 +213,30 @@ void MainWindowAndroid::_do_loadFile()
     _updateHolderSettings();
 
 #ifndef USE_QEXIF_LIB
+#ifndef BUILD_FOR_ANDROID
     auto exif_opt = wmg::Utils::getExifDataOfPicture(filename);
     if (exif_opt) {
         loaded_img_exif_ = std::move(*exif_opt);
     } else {
         loaded_img_exif_.clear();
     }
+#endif // BUILD_FOR_ANDROID
 #endif // !USE_QEXIF_LIB
 
     int dpi = 123;
 #ifdef USE_QEXIF_LIB
     if (auto dpi_rational_opt = wmg::Utils::getExifDPIResolutionOfPicture(filename)) {
         dpi = static_cast<double>(dpi_rational_opt->first) / dpi_rational_opt->second;
-    }
+    } else
 #else // !USE_QEXIF_LIB
+#ifndef BUILD_FOR_ANDROID
     if (loaded_img_exif_.findKey(Exiv2::ExifKey{WMG_EXIFDATA_KEYSTR_EXIF_XRESOLUTION}) != loaded_img_exif_.end()) {
         auto rational = loaded_img_exif_[WMG_EXIFDATA_KEYSTR_EXIF_XRESOLUTION].value().toRational();
         dpi = static_cast<double>(rational.first) / rational.second;
-    }
+    } else
+#endif // BUILD_FOR_ANDROID
 #endif // USE_QEXIF_LIB
-    else {
+    {
         // use qimage things
         int dpm = image.dotsPerMeterX();
         dpi = dpm * 0.0254;
@@ -250,9 +254,14 @@ void MainWindowAndroid::_do_loadFile()
     }
 }
 
+// const QString s_tar_dir = "/storage/emulated/0/DCIM/Camera/";
+static const QString s_tar_dir_base = "/storage/emulated/0";
+static const QString s_tar_dir_root = "/Pictures/WeiXin";
+static const QString s_tar_dir = s_tar_dir_base + s_tar_dir_root;
+
 static QString _get_save_filename(const QString &ori_filename)
 {
-    QString save_filename;
+    // QString save_filename;
     //#if defined(Q_OS_WIN32) || defined(Q_OS_WIN64) || defined(Q_OS_LINUX)
     //    save_filename = ori_filename + "_watermark_";
     //#elif defined(Q_OS_ANDROID)
@@ -260,12 +269,29 @@ static QString _get_save_filename(const QString &ori_filename)
     //    save_filename = ori_filename + "_watermark_";
     //#endif
 
+    // Create dir if not exists
+    QDir dir(s_tar_dir);
+    if (!dir.exists()) {
+        qWarning() << "dir not exists, create one." << s_tar_dir;
+
+        bool ret = dir.mkpath(s_tar_dir);
+        if (!ret) {
+            qWarning() << "mkpath failed";
+        } else {
+            qDebug() << "mkpath success";
+        }
+    }
+
+    // QString unique_str = QString::number(QDateTime::currentMSecsSinceEpoch());
+    // QString save_filename = s_tar_dir + "/watermark_" + unique_str + ".jpg";
+
+    QString save_filename = s_tar_dir + "/IMG_"
+                            + QDateTime::currentDateTime().toString(QStringLiteral("yyyyMMdd_hhmmss")) + ".jpg";
+
     // save_filename = "/storage/emulated/0/DCIM/Camera/watermark_";
-    save_filename = "/storage/emulated/0/Download/watermark_";
+    // save_filename = "/storage/emulated/0/Download/watermark_";
 
-    QString unique_str = QString::number(QDateTime::currentMSecsSinceEpoch());
-
-    save_filename = save_filename + unique_str + ".jpg";
+    // save_filename = save_filename + unique_str + ".jpg";
 
     return save_filename;
 }
@@ -311,7 +337,7 @@ void MainWindowAndroid::_do_saveFile()
     wm_image.setDotsPerMeterX(dpm);
     wm_image.setDotsPerMeterY(dpm);
 
-    if (!wm_image.save(filename, nullptr, ui->sb_export_jpg_quality->value())) {
+    if (!wm_image.save(filename, "JPG", ui->sb_export_jpg_quality->value())) {
         QMessageBox::warning(this, tr("错误"), tr("保存图片失败: %0").arg(filename));
         return;
     }
@@ -325,6 +351,8 @@ void MainWindowAndroid::_do_saveFile()
 //     QMessageBox::warning(this, tr("错误"), tr("保存文件时, 写入DPI失败"));
 // }
 #else // !USE_QEXIF_LIB
+
+#ifndef BUILD_FOR_ANDROID
     auto temp_exif = loaded_img_exif_;
     qDebug() << "dpi:" << dpi;
     temp_exif[WMG_EXIFDATA_KEYSTR_EXIF_XRESOLUTION] = Exiv2::Rational(dpi, 1);
@@ -350,10 +378,12 @@ void MainWindowAndroid::_do_saveFile()
         qDebug() << " Exiv2::Error: " << e.what();
         QMessageBox::warning(this, tr("错误"), tr("保存文件时, 写入DPI失败: %0").arg(e.what()));
     }
+#endif
+
 #endif // USE_QEXIF_LIB
 
     QMessageBox::information(this, tr("通知"),
-                             tr("保存文件成功: %0").arg(filename));
+                             tr("保存文件成功: %0\n 请前往文件管理目录%1查看!!").arg(filename).arg(s_tar_dir_root));
     this->statusBar()->showMessage(tr("保存成功:%0").arg(filename), 5000);
 }
 
