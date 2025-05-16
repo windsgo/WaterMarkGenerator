@@ -8,4 +8,6 @@ CMakeLists.txt.user*
 
 /*.jpg
 
+/android/AndroidManifest.xml
+
 /build*/

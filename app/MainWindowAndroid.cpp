@@ -17,9 +17,73 @@
 
 #include "../src/Utils.h"
 
+#include <QtConcurrent>  // 别忘了引入
+
 #include "version.h"
 
 #define RETURN_ERROR(err_msg) { error_msg_ = (err_msg); this->statusBar()->showMessage(error_msg_, 5000); return false; }
+
+#ifdef ANDROID_IMAGE_SAVE_USE_JNI
+#include <QImage>
+#include <QBuffer>
+#include <QDateTime>
+#include <QJniObject>
+#include <QJniArray>
+#include <optional>
+
+std::optional<QString> saveImageToGallery(const QImage &image, const QString &format, int quality = -1)
+{
+    // 1. 将 QImage 转换为指定格式字节数组
+    QByteArray byteArray;
+    QBuffer buffer(&byteArray);
+    buffer.open(QIODevice::WriteOnly);
+    if (!image.save(&buffer, format.toUpper().toUtf8().constData(), quality)) {
+        return std::nullopt;
+    }
+
+    // 2. 构造 Java byte[]
+    QJniArray<jbyte> javaByteArray(byteArray.size());
+    for (int i = 0; i < byteArray.size(); ++i) {
+        javaByteArray[i] = byteArray.at(i);
+    }
+
+    // 3. 获取 Activity
+    QJniObject activity = QJniObject::callStaticObjectMethod(
+        "org/qtproject/qt/android/QtNative",
+        "activity",
+        "()Landroid/app/Activity;"
+        );
+
+    // 4. 生成文件名（watermark_20250516_195729.jpg）
+    QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_HHmmss");
+    QString suffix = format.toLower();
+    QString filename = QString("watermark_%1.%2").arg(timestamp, suffix);
+    QJniObject jFilename = QJniObject::fromString(filename);
+
+    // 5. 传递 MIME 类型（用于 MediaStore）
+    QString mimeType = (suffix == "png") ? "image/png" :
+                           (suffix == "webp") ? "image/webp" :
+                           "image/jpeg";
+    QJniObject jMimeType = QJniObject::fromString(mimeType);
+
+    // 6. 调用 Java 方法并返回保存路径
+    QJniObject savedPath = QJniObject::callStaticObjectMethod(
+        "org/qtproject/example/ImageSaver",
+        "saveImageToGallery",
+        "(Landroid/content/Context;[BLjava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+        activity.object(),
+        javaByteArray.object(),
+        jFilename.object<jstring>(),
+        jMimeType.object<jstring>()
+        );
+
+    if (!savedPath.isValid()) {
+        return std::nullopt;
+    }
+
+    return savedPath.toString();
+}
+#endif // ANDROID_IMAGE_SAVE_USE_JNI
 
 MainWindowAndroid::MainWindowAndroid(QWidget *parent)
     : QMainWindow(parent)
@@ -27,7 +91,36 @@ MainWindowAndroid::MainWindowAndroid(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QString version_str = QString("版本：%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(APP_VERSION_PATCH);
+    {
+        // 保存中对话框（可复用）
+        // savingDialog = new QDialog(this);
+        // savingDialog->setWindowTitle("请稍候");
+        // savingDialog->setModal(true);  // 阻止其他操作
+        // QVBoxLayout* layout = new QVBoxLayout(savingDialog);
+        // layout->addWidget(new QLabel("正在保存中，请稍候..."));
+        // savingDialog->setLayout(layout);
+        // savingDialog->setFixedSize(200, 100);
+
+        savingDialog = new QDialog(this);
+        savingDialog->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+        savingDialog->setModal(true);
+        savingDialog->setFixedSize(250, 100);
+
+        // 居中
+        savingDialog->move(this->geometry().center() - savingDialog->rect().center());
+        // 只加边框，不改背景和文字颜色，边框颜色用系统调色板的 shadow 色
+        savingDialog->setStyleSheet("border: 1.5px solid palette(shadow); border-radius: 6px;");
+
+        QVBoxLayout* layout = new QVBoxLayout(savingDialog);
+        layout->setContentsMargins(20, 20, 20, 20);
+
+        QLabel* label = new QLabel("正在保存中，请稍候...", savingDialog);
+        label->setAlignment(Qt::AlignCenter);
+
+        layout->addWidget(label);
+    }
+
+    QString version_str = QString("V%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(APP_VERSION_PATCH);
     // 或者 QString(APP_VERSION_STRING)
     ui->lbVersion->setText(version_str);
 
@@ -125,7 +218,7 @@ MainWindowAndroid::MainWindowAndroid(QWidget *parent)
         using_desc_.validate_self();
 
         _updateWaterMarkedPicture();
-        QCoreApplication::processEvents();
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
         this->repaint();
     });
 
@@ -135,7 +228,7 @@ MainWindowAndroid::MainWindowAndroid(QWidget *parent)
 
         _updateWaterMarkedPicture();
         this->repaint();
-        QCoreApplication::processEvents();
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
     });
 
     connect(ui->pbAdjustUp, &QPushButton::clicked, this, [this](){
@@ -144,7 +237,7 @@ MainWindowAndroid::MainWindowAndroid(QWidget *parent)
 
         _updateWaterMarkedPicture();
         this->repaint();
-        QCoreApplication::processEvents();
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
     });
 
     connect(ui->pbAdjustDown, &QPushButton::clicked, this, [this](){
@@ -153,7 +246,7 @@ MainWindowAndroid::MainWindowAndroid(QWidget *parent)
 
         _updateWaterMarkedPicture();
         this->repaint();
-        QCoreApplication::processEvents();
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
     });
 
     connect(ui->pbAdjustLeft, &QPushButton::clicked, this, [this](){
@@ -162,7 +255,7 @@ MainWindowAndroid::MainWindowAndroid(QWidget *parent)
 
         _updateWaterMarkedPicture();
         this->repaint();
-        QCoreApplication::processEvents();
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
     });
 
     connect(ui->pbAdjustRight, &QPushButton::clicked, this, [this](){
@@ -171,7 +264,7 @@ MainWindowAndroid::MainWindowAndroid(QWidget *parent)
 
         _updateWaterMarkedPicture();
         this->repaint();
-        QCoreApplication::processEvents();
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
     });
 
     _reset();
@@ -343,6 +436,51 @@ void MainWindowAndroid::_do_saveFile()
     wm_image.setDotsPerMeterX(dpm);
     wm_image.setDotsPerMeterY(dpm);
 
+#ifdef ANDROID_IMAGE_SAVE_USE_JNI
+    this->statusBar()->showMessage(tr("正在保存中…………请等待…………"), 5000);
+    this->update();
+    this->repaint();
+    QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+
+    savingDialog->show();
+
+    // 启动耗时操作
+    QFuture<void> future = QtConcurrent::run([=, this]() {
+        // === 模拟耗时操作 ===
+        auto save_ret = saveImageToGallery(wm_image, "JPG", ui->sb_export_jpg_quality->value());
+
+        // 回到主线程处理 UI
+        QMetaObject::invokeMethod(this, [=, this]() {
+            savingDialog->accept();  // 或 deleteLater()
+
+            // ✅ 操作完成后的逻辑写在这里
+            if (!save_ret) {
+                QMessageBox::warning(this, tr("错误"), tr("保存图片失败(到相册), 检查相册权限"));
+                return;
+            }
+
+            QMessageBox::information(this, tr("通知"),
+                                     tr("保存文件成功(到相册): %0").arg(*save_ret));
+            this->statusBar()->showMessage(tr("保存成功(到相册):%0").arg(*save_ret), 5000);
+        });
+    });
+
+#if 0
+    auto save_ret = saveImageToGallery(wm_image, "JPG", ui->sb_export_jpg_quality->value());
+    if (!save_ret) {
+        QMessageBox::warning(this, tr("错误"), tr("保存图片失败(到相册), 检查相册权限"));
+        return;
+    }
+
+    // 先不管安卓上的exiv2了, 以后再研究这个, 这个应该不重要
+
+    QMessageBox::information(this, tr("通知"),
+                             tr("保存文件成功(到相册): %0").arg(*save_ret));
+    this->statusBar()->showMessage(tr("保存成功(到相册):%0").arg(*save_ret), 5000);
+#endif
+    return;
+
+#else // !ANDROID_IMAGE_SAVE_USE_JNI
     if (!wm_image.save(filename, "JPG", ui->sb_export_jpg_quality->value())) {
         QMessageBox::warning(this, tr("错误"), tr("保存图片失败: %0").arg(filename));
         return;
@@ -391,6 +529,7 @@ void MainWindowAndroid::_do_saveFile()
     QMessageBox::information(this, tr("通知"),
                              tr("保存文件成功: %0\n 请前往文件管理目录%1查看!!").arg(filename).arg(s_tar_dir_root));
     this->statusBar()->showMessage(tr("保存成功:%0").arg(filename), 5000);
+#endif // ANDROID_IMAGE_SAVE_USE_JNI
 }
 
 void MainWindowAndroid::_do_chooseFile()

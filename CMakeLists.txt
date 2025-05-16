@@ -18,8 +18,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Concurrent )
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Concurrent )
 
 # 弃用了，不用qexif了现在先
 # 虽然exiv2在安卓上似乎也读取不到文件，这个以后再说 TODO
@@ -32,6 +32,7 @@ if (ANDROID)
   option(BUILD_FOR_ANDROID "build android version" ON)
   message(STATUS "building android")
   add_compile_definitions("-DBUILD_FOR_ANDROID") # 在CPP代码中检测用
+  add_compile_definitions("-DANDROID_IMAGE_SAVE_USE_JNI") # 使用JNI保存到图库
 endif()
 
 if (USE_QEXIF_LIB)
@@ -91,18 +92,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
       # 配置 AndroidManifest.xml（模板在 android/AndroidManifest.xml.in）
       configure_file(
           ${CMAKE_CURRENT_SOURCE_DIR}/android/AndroidManifest.xml.in
-          ${CMAKE_CURRENT_BINARY_DIR}/android/AndroidManifest.xml
+          ${CMAKE_CURRENT_SOURCE_DIR}/android/AndroidManifest.xml
           @ONLY
       )
       set_property(TARGET watermark_qt6 APPEND PROPERTY
-          QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/android
+          QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
       )
-
-      # 拷贝 java 源码到构建目录
-      file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/android/src
-           DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/android)
-
-      message(STATUS "**** dir1: ${CMAKE_CURRENT_BINARY_DIR}/android")
       message(STATUS "**** VERSION_CODE: ${VERSION_CODE}")
       get_target_property(PACKAGE_DIR watermark_qt6 QT_ANDROID_PACKAGE_SOURCE_DIR)
       message(STATUS "QT_ANDROID_PACKAGE_SOURCE_DIR = ${PACKAGE_DIR}")
@@ -173,6 +168,7 @@ endif()
 target_link_libraries(watermark_qt6 PRIVATE
   Qt${QT_VERSION_MAJOR}::Widgets
   Qt${QT_VERSION_MAJOR}::Core
+  Qt${QT_VERSION_MAJOR}::Concurrent
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

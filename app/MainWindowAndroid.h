@@ -2,6 +2,7 @@
 #define MAINWINDOWANDROID_H
 
 #include <QMainWindow>
+#include <QDialog>
 
 #ifdef USE_QEXIF_LIB
 #include "qexifimageheader.h"
@@ -65,6 +66,8 @@ private:
     bool allow_autoupdate_ {true};
 
     QButtonGroup* btn_group_;
+
+    QDialog* savingDialog = new QDialog(this);
 };
 
 #endif // MAINWINDOWANDROID_H
