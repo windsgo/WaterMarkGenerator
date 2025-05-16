@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "WaterMarkGenerator"
-#define MyAppVersion "1.0.2"
+#define MyAppVersion "3.1.2"
 #define MyAppPublisher "windsgo"
 #define MyAppURL "https://github.com/windsgo/WaterMarkGenerator"
 #define MyAppExeName "watermark_qt6.exe"
@@ -10,7 +10,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{80433525-5E5B-4621-8110-B52DB219F16F}
+AppId={{09926F85-9C88-4CB2-B7EE-BB9123F8E9B7}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -32,8 +32,9 @@ DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=mysetup
-SetupIconFile=E:\codes\cpp\WaterMarkProjects\proj1\WaterMarkGenerator\resource\logo.ico
+OutputDir=E:\andc\pack
+OutputBaseFilename=WaterMarkGenerator-Qt6_9_0-MinGW_win_x86_64-release_v_3_1_2_setup
+SetupIconFile=E:\andc\wmg\resource\logo.ico
 SolidCompression=yes
 WizardStyle=modern
 
@@ -44,8 +45,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "E:\codes\cpp\WaterMarkProjects\proj1\app_release_v1.0.1\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "E:\codes\cpp\WaterMarkProjects\proj1\app_release_v1.0.1\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\andc\pack\WaterMarkGenerator-Qt6_9_0-MinGW_win_x86_64-release_v_3_1_2\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\andc\pack\WaterMarkGenerator-Qt6_9_0-MinGW_win_x86_64-release_v_3_1_2\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
