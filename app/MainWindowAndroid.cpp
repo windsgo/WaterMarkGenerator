@@ -17,6 +17,8 @@
 
 #include "../src/Utils.h"
 
+#include "version.h"
+
 #define RETURN_ERROR(err_msg) { error_msg_ = (err_msg); this->statusBar()->showMessage(error_msg_, 5000); return false; }
 
 MainWindowAndroid::MainWindowAndroid(QWidget *parent)
@@ -24,6 +26,10 @@ MainWindowAndroid::MainWindowAndroid(QWidget *parent)
     , ui(new Ui::MainWindowAndroid)
 {
     ui->setupUi(this);
+
+    QString version_str = QString("版本：%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(APP_VERSION_PATCH);
+    // 或者 QString(APP_VERSION_STRING)
+    ui->lbVersion->setText(version_str);
 
     // 创建正则表达式
     QRegularExpression regex("^[A-Fa-f0-9]{6}$");

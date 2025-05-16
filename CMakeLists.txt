@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(watermark_qt6 VERSION 0.1 LANGUAGES CXX)
+project(watermark_qt6 VERSION 3.1.1 LANGUAGES CXX)
 
 if (MSVC)
   set(CMAKE_BUILD_TYPE Release) # Debug MSVC has bug
-
   if (POLICY CMP0091)
     cmake_policy(SET CMP0091 NEW)
   endif (POLICY CMP0091)
@@ -22,34 +21,35 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
+# 弃用了，不用qexif了现在先
+# 虽然exiv2在安卓上似乎也读取不到文件，这个以后再说 TODO
 option(USE_QEXIF_LIB "use qexif lib rather than exiv2" OFF) # all platform but has bugs (qexif is not good enough)
+
+# 不打开这个是构建不了安卓的，不打开只能用MSVC构建，因为库是MSVC二进制的库
 option(USE_EXIV2_SOURCE "if use exiv2, open this to build from source (cross platform) " ON) # allow all platform build, not only MSVC
 
 if (ANDROID)
   option(BUILD_FOR_ANDROID "build android version" ON)
   message(STATUS "building android")
-  add_compile_definitions("-DBUILD_FOR_ANDROID") # for cpp use
+  add_compile_definitions("-DBUILD_FOR_ANDROID") # 在CPP代码中检测用
 endif()
 
 if (USE_QEXIF_LIB)
   message(STATUS "using qexif lib")
-  add_compile_definitions("-DUSE_QEXIF_LIB") # for cpp use
+  add_compile_definitions("-DUSE_QEXIF_LIB") # 在CPP代码中检测用
 endif ()
 
 set(TS_FILES watermark_qt6_zh_CN.ts)
 
+# project版本映射到version.h中
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/version.h.in
+    ${CMAKE_CURRENT_BINARY_DIR}/version.h
+)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
 set(PROJECT_SOURCES
         app/main.cpp
-        app/mainwindow.cpp
-        app/mainwindow.h
-        app/mainwindow.ui
-        ${TS_FILES}
-)
-
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(watermark_qt6
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
         src/WaterMarkGenerator.h src/WaterMarkGenerator.cpp
         src/WaterMarkDesc.h
         src/Utils.h src/Utils.cpp
@@ -57,21 +57,59 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         resource/icon.rc
         src/WaterMarkDesc.cpp
         src/WaterMarkHolder.h src/WaterMarkHolder.cpp
-        app/MainWindowAndroid.h app/MainWindowAndroid.cpp app/MainWindowAndroid.ui
-        android/AndroidManifest.xml
-        android/AndroidManifest.xml android/build.gradle android/res/values/libs.xml android/res/xml/qtprovider_paths.xml
-        android/AndroidManifest.xml android/build.gradle android/res/values/libs.xml android/res/xml/qtprovider_paths.xml
-        android/AndroidManifest.xml android/build.gradle android/res/values/libs.xml android/res/xml/qtprovider_paths.xml
+
+        ${CMAKE_CURRENT_SOURCE_DIR}/version.h.in
+        ${TS_FILES}
+)
+
+# 不同生成方式，用不同的ui界面（就是对安卓apk特殊化一下）
+if (ANDROID)
+  list(APPEND PROJECT_SOURCES
+    app/MainWindowAndroid.h
+    app/MainWindowAndroid.cpp
+    app/MainWindowAndroid.ui
+  )
+else ()
+  list(APPEND PROJECT_SOURCES
+    app/mainwindow.cpp
+    app/mainwindow.h
+    app/mainwindow.ui
+  )
+endif()
+
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_executable(watermark_qt6
+        MANUAL_FINALIZATION
+        ${PROJECT_SOURCES}
     )
 
-  if(ANDROID)
-    set_target_properties(watermark_qt6 PROPERTIES
-      QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
-    )
+    # 重要 安卓上的相关文件路径
+    if (ANDROID)
+      # 生成 versionCode: 1.2.3 → 10203
+      math(EXPR VERSION_CODE "${PROJECT_VERSION_MAJOR} * 10000 + ${PROJECT_VERSION_MINOR} * 100 + ${PROJECT_VERSION_PATCH}")
+      message(STATUS "App Version: ${PROJECT_VERSION}, Code: ${VERSION_CODE}")
+      # 配置 AndroidManifest.xml（模板在 android/AndroidManifest.xml.in）
+      configure_file(
+          ${CMAKE_CURRENT_SOURCE_DIR}/android/AndroidManifest.xml.in
+          ${CMAKE_CURRENT_BINARY_DIR}/android/AndroidManifest.xml
+          @ONLY
+      )
+      set_property(TARGET watermark_qt6 APPEND PROPERTY
+          QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/android
+      )
 
-    qt6_android_generate_deployment_settings(watermark_qt6)
-    qt_android_add_apk_target(watermark_qt6)
-  endif()
+      # 拷贝 java 源码到构建目录
+      file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/android/src
+           DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/android)
+
+      message(STATUS "**** dir1: ${CMAKE_CURRENT_BINARY_DIR}/android")
+      message(STATUS "**** VERSION_CODE: ${VERSION_CODE}")
+      get_target_property(PACKAGE_DIR watermark_qt6 QT_ANDROID_PACKAGE_SOURCE_DIR)
+      message(STATUS "QT_ANDROID_PACKAGE_SOURCE_DIR = ${PACKAGE_DIR}")
+
+      # qt6_android_generate_deployment_settings(watermark_qt6)
+      # qt_android_add_apk_target(watermark_qt6)
+    endif()
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET watermark_qt6 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
@@ -94,6 +132,7 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
+
 if (USE_QEXIF_LIB)
   find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core5Compat)
   find_package(Qt${QT_VERSION_MAJOR} REQUIRED Core5Compat)
@@ -111,9 +150,9 @@ if (USE_QEXIF_LIB)
   target_include_directories(watermark_qt6 PRIVATE
     ${PROJECT_SOURCE_DIR}/third_party/qexif
   )
-target_link_libraries(watermark_qt6 PRIVATE
-  qexif
-)
+  target_link_libraries(watermark_qt6 PRIVATE
+    qexif
+  )
 else()
   if (USE_EXIV2_SOURCE)
     message(STATUS "build exiv2 from source ...")
@@ -125,6 +164,7 @@ else()
     add_subdirectory(${PROJECT_SOURCE_DIR}/third_party)
     find_package(exiv2 REQUIRED CONFIG NAMES exiv2)    # search ${CMAKE_INSTALL_PREFIX}/lib/cmake/exiv2/
   endif()
+
   target_link_libraries(watermark_qt6 PRIVATE
     Exiv2::exiv2lib
   )
