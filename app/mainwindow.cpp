@@ -10,6 +10,7 @@
 
 #include "../src/Utils.h"
 
+#include "version.h"
 
 #define RETURN_ERROR(err_msg) { error_msg_ = (err_msg); return false; }
 
@@ -18,6 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QString version_str = QString("V%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(APP_VERSION_PATCH);
+    // 或者 QString(APP_VERSION_STRING)
+    ui->lbVersion->setText(version_str);
 
     this->wm_holder_ = std::make_shared<wmg::WaterMarkHolder>();
 

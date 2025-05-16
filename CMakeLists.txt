@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(watermark_qt6 VERSION 3.1.1 LANGUAGES CXX)
+project(watermark_qt6 VERSION 3.1.2 LANGUAGES CXX)
 
 if (MSVC)
   set(CMAKE_BUILD_TYPE Release) # Debug MSVC has bug
